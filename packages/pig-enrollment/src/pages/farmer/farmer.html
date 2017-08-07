@@ -1,0 +1,139 @@
+<header></header>
+
+<ion-content padding fullscreen>
+  <div class="header-background"></div>
+
+  <ion-card class="margin-card">
+    <h3>{{memberId}}</h3>
+    <h2><strong>농장명 : </strong> {{memberName}} </h2>
+    <h2><strong>이력번호 : </strong> {{pigId}} </h2>
+  </ion-card>
+
+  <ion-card class="margin-card">
+    <h3><strong>출생 일자</strong></h3>
+    <ion-item>
+    <ion-datetime displayFormat="YYYY.MM.DD" pickerFormat="YYYY MM DD" [(ngModel)]="myDate"></ion-datetime>
+    </ion-item>
+  </ion-card>
+
+
+  <ion-card class="animatedCard" [class.expandedCard]="selected === 'kind'">
+    <h3 class="car-option" (click)="open('kind')">
+      <img [hidden]="states['kind']" src="assets/circle_empty.svg">
+      <img [hidden]="!states['kind']" src="assets/circle_tick.svg">
+      종류
+      <span class="car-option-selected">{{states['kind']}}</span>
+    </h3>
+
+    <div>
+      <div class="option-item top-option-item" (click)="select('kind', '일반돼지')">
+        <div class="option-description">
+          <h2>일반 돼지</h2>
+        </div>
+        <ion-badge [hidden]="states['kind'] !== '일반돼지'" item-right color="dark" class="selected"><img src="assets/tick.svg"></ion-badge>
+      </div>
+
+      <div class="option-item" (click)="select('kind', '흑돼지')">
+        <div class="option-description">
+          <h2>흙돼지</h2>
+        </div>
+        <ion-badge [hidden]="states['kind'] !== '흑돼지'" item-right color="dark" class="selected"><img src="assets/tick.svg"></ion-badge>
+      </div>
+
+      <div class="option-item" (click)="select('kind', '멧돼지')">
+        <div class="option-description">
+          <h2>멧돼지</h2>
+        </div>
+        <ion-badge [hidden]="states['kind'] !== '멧돼지'" item-right color="dark" class="selected"><img src="assets/tick.svg"></ion-badge>
+      </div>
+    </div>
+  </ion-card>
+
+  <ion-card class="animatedCard" [class.expandedCard]="selected === 'color'">
+    <h3 class="car-option" (click)="open('color')">
+      <img [hidden]="states['color']" src="assets/circle_empty.svg">
+      <img [hidden]="!states['color']" src="assets/circle_tick.svg">
+      색상
+      <span class="car-option-selected">{{states['color']}}</span>
+    </h3>
+
+    <div class="option-colors">
+
+      <div class="option-color" (click)="select('color', 'pink')" [ngClass]="{selected: states['color'] === 'pink'}">
+        <div class="option-color-preview pink"></div>
+        <h4>Pink</h4>
+      </div>
+
+      <div class="option-color" (click)="select('color', 'black')" [ngClass]="{selected: states['color'] === 'black'}">
+        <div class="option-color-preview black"></div>
+        <h4>Black</h4>
+      </div>
+      
+      <div class="option-color" (click)="select('color', 'brown')" [ngClass]="{selected: states['color'] === 'brown'}">
+        <div class="option-color-preview brown"></div>
+        <h4>Brown</h4>
+      </div>
+    </div>
+  </ion-card>
+
+  <ion-card class="animatedCard" [class.expandedCard]="selected === 'sex'">
+    <h3 class="car-option" (click)="open('sex')">
+      <img [hidden]="states['sex']" src="assets/circle_empty.svg">
+      <img [hidden]="!states['sex']" src="assets/circle_tick.svg">
+      성별
+      <span class="car-option-selected">{{states['sex']}}</span>
+    </h3>
+
+    <div>
+      <div class="option-item top-option-item" (click)="select('sex', '암돼지')">
+        <div class="option-description">
+          <h2>암돼지</h2>
+        </div>
+        <ion-badge [hidden]="states['sex'] !== '암돼지'" item-right color="dark" class="selected"><img src="assets/tick.svg"></ion-badge>
+      </div>
+
+      <div class="option-item" (click)="select('sex', '숫돼지')">
+        <div class="option-description">
+          <h2>숫돼지</h2>
+        </div>
+        <ion-badge [hidden]="states['sex'] !== '숫돼지'" item-right color="dark" class="selected"><img src="assets/tick.svg"></ion-badge>
+      </div>
+
+      <div class="option-item" (click)="select('sex', '거세돼지')">
+        <div class="option-description">
+          <h2>거세돼지</h2>
+        </div>
+        <ion-badge [hidden]="states['sex'] !== '거세돼지'" item-right color="dark" class="selected"><img src="assets/tick.svg"></ion-badge>
+      </div>
+    </div>
+  </ion-card>
+
+  <ion-card class="animatedCard" [class.expandedCard]="selected === 'importType'">
+    <h3 class="car-option" (click)="open('importType')">
+      <img [hidden]="states['importType']" src="assets/circle_empty.svg">
+      <img [hidden]="!states['importType']" src="assets/circle_tick.svg">
+      수입 구분
+      <span class="car-option-selected">{{states['importType']}}</span>
+    </h3>
+
+    <div>
+      <div class="option-item top-option-item" (click)="select('importType', '국내')">
+        <div class="option-description">
+          <h2>국내</h2>
+        </div>
+        <ion-badge [hidden]="states['importType'] !== '국내'" item-right color="dark" class="selected"><img src="assets/tick.svg"></ion-badge>
+      </div>
+
+      <div class="option-item" (click)="select('importType', '수입')">
+        <div class="option-description">
+          <h2>수입</h2>
+        </div>
+        <ion-badge [hidden]="states['importType'] !== '수입'" item-right color="dark" class="selected"><img src="assets/tick.svg"></ion-badge>
+      </div>
+    </div>
+  </ion-card>
+
+  <ion-card (click)="purchase()">
+    <button ion-button color="secondary">출생 신고 <img src="assets/arrow_right.svg"></button>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,47 @@
+<header></header>
+
+<ion-content padding fullscreen>
+  <div class="header-background"></div>
+
+  <ion-card class="margin-card">
+    <ion-item>
+      <ion-label color="dark"><strong>이력 번호 : </strong></ion-label>
+      <ion-input width="40%" placeholder="이력 번호 12자리를 입력하세요." [(ngModel)]="myPigId"></ion-input>
+      <button ion-button item-right color="secondary" (click)="search()"> 조회 <img src="assets/arrow_right.svg"></button>
+    </ion-item>
+  </ion-card>
+
+   <ion-card class="margin-card" [hidden]="!pigId">
+    <h2 class="car-option">
+      <img [hidden]="pigId" src="assets/circle_empty.svg">
+      <img [hidden]="!pigId" src="assets/circle_tick.svg">
+      <strong>사육 정보</strong>
+    </h2>
+
+    <div>
+      <h3 class="detail"><strong>이력번호 : </strong> {{pigId}}</h3>
+      <h3 class="detail"><strong>농장명 : </strong> 농심 농장</h3>
+      <h3 class="detail"><strong>출생일자 : </strong> {{pigBirthDate}}</h3>
+      <h3 class="detail"><strong>종류 : </strong> {{pigKind}}</h3>
+    </div>
+  </ion-card>
+
+  <ion-card class="margin-card" *ngFor="let asset of allAssets">
+    <h2 class="car-option">
+      <img [hidden]="pigId" src="assets/circle_empty.svg">
+      <img [hidden]="!pigId" src="assets/circle_tick.svg">
+      <strong>{{asset.ownerName}} 정보</strong>
+    </h2>
+
+    <div>
+      <h3 class="detail" [hidden]="!asset.purchaseName"><strong>{{asset.ownerName}}장 : </strong>{{asset.purchaseName}}</h3>
+      <h3 class="detail" [hidden]="!asset.purchaseDate"><strong>{{asset.ownerName}}일자 : </strong>{{asset.purchaseDate}}</h3>
+      <h3 class="detail" [hidden]="!asset.grade"><strong>{{asset.gradeName}} : </strong>{{asset.grade}}</h3>
+      <h3 class="detail" [hidden]="!asset.weight"><strong>중량 : </strong>{{asset.weight}} kg</h3>
+      <h3 class="detail" [hidden]="!asset.passFlag"><strong>합격여부 : </strong>{{asset.passFlag}}</h3> 
+    </div>
+  </ion-card>
+
+  <ion-card class="margin-card" [hidden]="true">
+  </ion-card>
+</ion-content>

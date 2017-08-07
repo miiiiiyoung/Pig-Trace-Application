@@ -1,0 +1,74 @@
+<bc-man-sidebar></bc-man-sidebar>
+
+<div class="bc-man-dashboard">
+  <h1>
+    Dashboard
+    <div class="search">
+      <input type="text" name="search" placeholder="Search Pig"></input>
+      <img src="../../../assets/images/pig.png" alt="Profile">
+    </div>
+  </h1>
+
+  <div>
+    <h5>Currently In Pig</h5>
+
+    <div class="bc-man-production">
+      <div ng-repeat="pig in pigs | orderBy : '-pig.pigId' | limitTo : 5">
+        <div class="card">
+          <div class="card-block">
+            <div class="card-header">
+              <div>
+                <h5>Pig</h5>
+                <h3><strong>{{pig.pig.pigId}}</strong></h3>
+
+                <p style="margin-bottom: 5px;"><strong>출생 일자&nbsp;</strong> {{pig.pig.birthDate}}</p>
+                <p style="margin: 0 0 5px;"><strong>종류&nbsp;</strong> {{pig.pig.kind}}</p>
+                <p style="margin: 0 0 5px;"><strong>암수 구분&nbsp;</strong> {{pig.pig.sex}}</p>
+                <p style="margin: 0 0 5px;"><strong>수입 구분&nbsp;</strong> {{pig.pig.importType}}</p>
+              </div>
+
+              <div class="swatch" ng-class="pig.pig.color">
+              </div>
+            </div>
+          </div>
+
+          <div class="card-block" ng-repeat="order in orders | orderBy: 'process.timestamp'">
+            <div ng-if="order.process.pig == pig.pig.pigId">
+              <hr />
+              <p class="status status-green">
+              <h3 class="card-title"><strong>&nbsp;&nbsp;&nbsp;&nbsp;{{order.process.newOwner}}</strong></h3>
+
+              <!-- <p style="margin-bottom: 5px;"><strong>pig</strong> {{order.process.pig}}</p> -->
+              <p style="margin-bottom: 5px;"><strong>{{order.process.ownerName}}장명&nbsp;</strong> {{order.process.purchaseName}}</p>
+              <p style="margin: 0 0 5px;"><strong>{{order.process.ownerName}} 일자&nbsp;</strong> {{order.process.purchaseDate}}</p>
+              <p style="margin: 0 0 5px;"><strong>{{order.process.gradeName}}&nbsp;</strong> {{order.process.grade}}</p>
+              <p style="margin: 0 0 5px;" ng-if="order.process.passFlag"><strong>도축 검사&nbsp;</strong> {{order.process.passFlag}}</p>
+              <p style="margin: 0 0 5px;" ng-if="order.process.weight"><strong>중량&nbsp;</strong> {{order.process.weight}} kg</p>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+<!--
+    <div>
+      <div class="bc-man-overview">
+        <h5>
+          Production Overview
+          <button class="btn btn-secondary">Daily</button>
+          <button class="btn fade">Weekly</button>
+          <button class="btn fade">Monthly</button>
+        </h5>
+
+        <div class="graphs">
+          <img src="../../../assets/images/Graph 1.svg" alt="Cars Produced">
+          <img src="../../../assets/images/Graph 2.svg" alt="Queued Drills">
+          <img src="../../../assets/images/Graph 3.svg" alt="Complete Stops">
+        </div>
+      </div>
+    </div>
+-->
+
+  </div>
+</div>

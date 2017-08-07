@@ -1,0 +1,98 @@
+<header></header>
+
+<ion-content padding fullscreen>
+  <div class="header-background"></div>
+
+  <ion-card class="margin-card">
+    <h3>{{memberId}}</h3>
+    <h2><strong>매입처 상호 : </strong> {{memberName}} </h2>
+  </ion-card>
+
+  <ion-card class="margin-card">
+    <ion-item>
+      <ion-label color="dark"><strong>이력 번호 : </strong></ion-label>
+      <ion-input width="40%" placeholder="이력 번호를 입력하세요." [(ngModel)]="myPigId"></ion-input>
+      <button ion-button item-right color="secondary" (click)="search()"> 조회 <img src="assets/arrow_right.svg"></button>
+    </ion-item>
+    <ion-item>
+    <ion-label color="dark">농장명 : {{pigOwnerName}}</ion-label>
+    </ion-item>
+    <ion-item>
+    <ion-label color="dark">출생 일자 : {{pigBirthDate}}</ion-label>
+    </ion-item>
+  </ion-card>
+
+  <ion-card class="margin-card" [hidden]="!pigOwnerName">
+    <h3><strong>도축 일자</strong></h3>
+    <ion-item>
+    <ion-datetime displayFormat="YYYY.MM.DD" pickerFormat="YYYY MM DD" [(ngModel)]="myDate"></ion-datetime>
+    </ion-item>
+  </ion-card>
+
+  <ion-card class="animatedCard" [hidden]="!pigOwnerName" [class.expandedCard]="selected === 'grade'">
+    <h3 class="car-option" (click)="open('grade')">
+      <img [hidden]="states['grade']" src="assets/circle_empty.svg">
+      <img [hidden]="!states['grade']" src="assets/circle_tick.svg">
+      등급
+      <span class="car-option-selected">{{states['grade']}}</span>
+    </h3>
+
+    <div class="option-grades">
+
+      <div class="option-grade" (click)="select('grade', '1+등급')" [ngClass]="{selected: states['grade'] === '1+등급'}">
+        <img src="assets/grade1+.jpg" />
+        <h4>1+등급</h4>
+      </div>
+
+      <div class="option-grade" (click)="select('grade', '1등급')" [ngClass]="{selected: states['grade'] === '1등급'}">
+        <img src="assets/grade1.png" />
+        <h4>1등급</h4>
+      </div>
+      
+
+      <div class="option-grade" (click)="select('grade', '2등급')" [ngClass]="{selected: states['grade'] === '2등급'}">
+        <img src="assets/grade2.png" />
+        <h4>2등급</h4>
+      </div>
+
+      <div class="option-grade" (click)="select('grade', '3등급')" [ngClass]="{selected: states['grade'] === '3등급'}">
+        <img src="assets/grade3.png" />
+        <h4>3등급</h4>
+      </div>
+
+      <div class="option-grade" (click)="select('grade', 'E등급')" [ngClass]="{selected: states['grade'] === 'E등급'}">
+        <img src="assets/gradeE.png" />
+        <h4>E등급</h4>
+      </div>
+    </div>
+  </ion-card>
+
+  <ion-card class="animatedCard" [hidden]="!pigOwnerName" [class.expandedCard]="selected === 'passFlag'">
+    <h3 class="car-option" (click)="open('passFlag')">
+      <img [hidden]="states['passFlag']" src="assets/circle_empty.svg">
+      <img [hidden]="!states['passFlag']" src="assets/circle_tick.svg">
+      도축 검사
+      <span class="car-option-selected">{{states['passFlag']}}</span>
+    </h3>
+
+    <div>
+      <div class="option-item top-option-item" (click)="select('passFlag', '합격')">
+        <div class="option-description">
+          <h2>합격</h2>
+        </div>
+        <ion-badge [hidden]="states['passFlag'] !== '합격'" item-right color="dark" class="selected"><img src="assets/tick.svg"></ion-badge>
+      </div>
+
+      <div class="option-item" (click)="select('passFlag', '불합격')">
+        <div class="option-description">
+          <h2>불합격</h2>
+        </div>
+        <ion-badge [hidden]="states['passFlag'] !== '불합격'" item-right color="dark" class="selected"><img src="assets/tick.svg"></ion-badge>
+      </div>
+    </div>
+  </ion-card>
+
+  <ion-card (click)="butchery()">
+    <button ion-button color="secondary">도축 신고 <img src="assets/arrow_right.svg"></button>
+  </ion-card>
+</ion-content>

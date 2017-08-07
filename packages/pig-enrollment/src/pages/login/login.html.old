@@ -1,0 +1,18 @@
+<ion-content padding>
+  <div class="content">
+    <img class="map" src="assets/world_map.svg" alt="">
+
+    <div class="login-content">
+      <div class="account">
+          <img src="assets/farmer.png" (click)="loginFarmer()" class="login-image" alt="farmer" />
+          <img src="assets/butchery.png" (click)="loginButchery()" class="login-image" alt="butchery" />
+          <img src="assets/package.png" (click)="loginPackage()" class="login-image" alt="package" />
+          <img src="assets/retailer.png" (click)="loginRetailer()" class="login-image" alt="retailer" />
+          
+      </div>
+      <h2><strong></strong></h2>
+      <img src="assets/search.png" (click)="searchList()" class="search-image"/>
+    </div>
+    
+  </div>
+</ion-content>

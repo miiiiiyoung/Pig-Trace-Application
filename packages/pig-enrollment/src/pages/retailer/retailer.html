@@ -1,0 +1,74 @@
+<header></header>
+
+<ion-content padding fullscreen>
+  <div class="header-background"></div>
+
+  <ion-card class="margin-card">
+    <h3>{{memberId}}</h3>
+    <h2><strong>판매처 상호 : </strong> {{memberName}} </h2>
+  </ion-card>
+
+  <ion-card class="margin-card">
+    <ion-item>
+      <ion-label color="dark"><strong>이력 번호 : </strong></ion-label>
+      <ion-input width="40%" placeholder="이력 번호 12자리를 입력하세요." [(ngModel)]="myPigId"></ion-input>
+      <button ion-button item-right color="secondary" (click)="search()"> 조회 <img src="assets/arrow_right.svg"></button>
+    </ion-item>
+    <ion-item>
+    <ion-label color="dark">포장처 상호 : {{pigOwnerName}}</ion-label>
+    </ion-item>
+    <ion-item>
+    <ion-label color="dark">출생 일자 : {{pigBirthDate}}</ion-label>
+    </ion-item>
+  </ion-card>
+
+  <ion-card class="margin-card" [hidden]="!pigOwnerName">
+    <h3><strong>매입 일자</strong></h3>
+    <ion-item>
+    <ion-datetime displayFormat="YYYY.MM.DD" pickerFormat="YYYY MM DD" [(ngModel)]="myDate"></ion-datetime>
+    </ion-item>
+  </ion-card>
+
+  <ion-card class="animatedCard" [hidden]="!pigOwnerName" [class.expandedCard]="selected === 'grade'">
+    <h3 class="car-option" (click)="open('grade')">
+      <img [hidden]="states['grade']" src="assets/circle_empty.svg">
+      <img [hidden]="!states['grade']" src="assets/circle_tick.svg">
+      판매 단위
+      <span class="car-option-selected">{{states['grade']}}</span>
+    </h3>
+
+    <div>
+      <div class="option-item top-option-item" (click)="select('grade', '소량')">
+        <div class="option-description">
+          <h2>소량</h2>
+        </div>
+        <ion-badge [hidden]="states['grade'] !== '소량'" item-right color="dark" class="selected"><img src="assets/tick.svg"></ion-badge>
+      </div>
+
+      <div class="option-item" (click)="select('grade', '대량')">
+        <div class="option-description">
+          <h2>대량</h2>
+        </div>
+        <ion-badge [hidden]="states['grade'] !== '대량'" item-right color="dark" class="selected"><img src="assets/tick.svg"></ion-badge>
+      </div>
+
+      <div class="option-item" (click)="select('grade', '묶음')">
+        <div class="option-description">
+          <h2>묶음</h2>
+        </div>
+        <ion-badge [hidden]="states['grade'] !== '묶음'" item-right color="dark" class="selected"><img src="assets/tick.svg"></ion-badge>
+      </div>
+    </div>
+  </ion-card>
+
+  <ion-card class="margin-card" [hidden]="!pigOwnerName">
+    <ion-item>
+      <ion-label color="dark"><strong>중량 : </strong></ion-label>
+      <ion-input width="40%" type="number" placeholder="중량을 입력하세요. (단위 : kg)" [(ngModel)]="myWeight"></ion-input>
+    </ion-item>
+  </ion-card>
+
+  <ion-card (click)="retailer()">
+    <button ion-button color="secondary">판매 신고 <img src="assets/arrow_right.svg"></button>
+  </ion-card>
+</ion-content>

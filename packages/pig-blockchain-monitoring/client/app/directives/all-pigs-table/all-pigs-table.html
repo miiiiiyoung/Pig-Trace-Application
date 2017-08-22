@@ -33,7 +33,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr ng-repeat="order in pig.transactionData | orderBy: 'timestamp'" ng-if="order.pig == pig.pigId" ng-click="toggleEntries($index)" class="hover">
+                <tr ng-repeat="order in pig.transactionData | orderBy: 'timestamp' | filter: { class: 'org.acme.mynetwork.Process' }" ng-if="order.pig == pig.pigId" ng-click="toggleEntries($index)" class="hover">
                   <td>{{ order.timestamp | date:'medium'}}</td>
                   <td>{{ order.transactionId }}</td>
                   <td>{{ order.newOwner }}</td>

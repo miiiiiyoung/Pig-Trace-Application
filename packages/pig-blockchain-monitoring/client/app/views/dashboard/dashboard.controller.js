@@ -13,10 +13,18 @@ angular.module('bc-vda')
 
       // 체인 데이터 추가
       $scope.chain = response.data.map(function(transaction) {
-        var newOwnerSplit = transaction.newOwner.split('#');
-        var newOwner = newOwnerSplit[newOwnerSplit.length - 1];
-        var pigIdSplit = transaction.pig.split('#');
-        var pigId = pigIdSplit[pigIdSplit.length - 1];
+        var newOwnerSplit, newOwner, pigIdSplit, pigId;
+        
+        if(transaction.pig){
+          newOwnerSplit = transaction.newOwner.split('#');
+          newOwner = newOwnerSplit[newOwnerSplit.length - 1];
+          pigIdSplit = transaction.pig.split('#');
+          pigId = pigIdSplit[pigIdSplit.length - 1];
+        }
+
+        // var newOwner = transaction.newOwner;
+        // var pigId = transaction.pig;
+        
         var time = Date.parse(transaction.timestamp);
 
         // 트랜잭션 데이터 추가(recent-transaction-table)
@@ -25,7 +33,8 @@ angular.module('bc-vda')
           transaction_id: transaction.transactionId,
           transaction_newOwner: newOwner,
           transaction_pig: pigId,
-          transaction_purchaseName: transaction.purchaseName
+          transaction_purchaseName: transaction.purchaseName,
+          transaction_class: transaction.$class
         });
 
         return {
@@ -74,14 +83,14 @@ angular.module('bc-vda')
 
       var order = JSON.parse(event.data);
       console.log('processPig Event!!!');
-      $scope.addBlock(order.transactionId, order.newOwner, order.pig, order.purchaseName);
+      $scope.addBlock(order.transactionId, order.newOwner, order.pig, order.purchaseName, order.class);
       $scope.$apply();
     }
   }
 
   openProcessPigWebSocket();
 
-  $scope.addBlock = function (tranactionId, newOwner, pig, purchaseName) {
+  $scope.addBlock = function (tranactionId, newOwner, pig, purchaseName, transaction_class) {
     
     // id값 설정(체인 데이터가 비어있을 경우 id 값은 101로 설정)
     var id;
@@ -96,7 +105,8 @@ angular.module('bc-vda')
       id: id,
       transID: tranactionId,
       newOwner: newOwner,
-      purchaseName: purchaseName
+      purchaseName: purchaseName,
+      transaction_class: transaction_class
     });
 
     // 트랜잭션 데이터 추가(recent-transaction-table)
@@ -105,7 +115,8 @@ angular.module('bc-vda')
       transaction_id: tranactionId,
       transaction_newOwner: newOwner,
       transaction_pig: pig,
-      transaction_purchaseName: purchaseName
+      transaction_purchaseName: purchaseName,
+      transaction_class: transaction_class
     });
   };
 

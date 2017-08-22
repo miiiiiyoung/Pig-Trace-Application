@@ -43,20 +43,27 @@ angular.module('bc-manufacturer')
         $scope.orders = response.data.map(function(o) {
           var ownerName;
           var gradeName;
-          if(o.newOwner.substring(35) == 'BUTCHERY') {
+          if(o.pig){
+            o.newOwner = o.newOwner.substring(35);
+            o.pig = o.pig.substring(32);
+          }
+          // o.newOwner = o.newOwner.substring(35);
+          // o.pig = o.pig.substring(32);
+          if(o.newOwner == 'BUTCHERY') {
             ownerName = "도축";
             gradeName = "도축 등급";
-          }else if(o.newOwner.substring(35) == 'PACKAGE'){
+          }else if(o.newOwner == 'PACKAGE'){
             ownerName = "포장";
             gradeName = "포장 단위";
-          }else if(o.newOwner.substring(35) == 'RETAILER'){
+          }else if(o.newOwner == 'RETAILER'){
             ownerName = "판매";
             gradeName = "판매 단위";
           }
           var order = {
             process: {
-              pig: o.pig.substring(32),
-              newOwner: o.newOwner.substring(35),
+              class: o.$class,
+              pig: o.pig,
+              newOwner: o.newOwner,
               purchaseDate: o.purchaseDate,
               grade: o.grade,
               purchaseName: o.purchaseName,
@@ -121,6 +128,9 @@ angular.module('bc-manufacturer')
 
       var ownerName;
       var gradeName;
+      if(status.pig){
+        status.pig = status.pig.substring(32);
+      }
       if(status.newOwner == 'BUTCHERY') {
         ownerName = "도축";
         gradeName = "도축 등급";
@@ -134,6 +144,7 @@ angular.module('bc-manufacturer')
 
       $scope.orders.push({
         process: {
+          class: status.class,
           pig: status.pig,
           newOwner: status.newOwner,
           purchaseDate: status.purchaseDate,

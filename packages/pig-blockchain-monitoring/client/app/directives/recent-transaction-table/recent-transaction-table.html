@@ -17,7 +17,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="t in transactions | orderBy: '-timestamp'">
+			<tr ng-repeat="t in transactions | orderBy: '-timestamp' | filter: { transaction_class:'org.acme.mynetwork.Process' }">
 				<td>{{ t.timestamp | date:'medium' }}</td>
 				<td>{{ t.transaction_id }}</td>
 				<td>{{ t.transaction_purchaseName }}</td>

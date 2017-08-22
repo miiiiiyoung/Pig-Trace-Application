@@ -14,11 +14,16 @@ angular.module('bc-vda')
       console.log(response.data);
       if (Array.isArray(response.data)) {
         $scope.orders = response.data.map(function(o) {
+          if(o.pig) {
+            o.newOwner = o.newOwner.substring(35);
+            o.pig = o.pig.substring(32);
+          }
           
           var order = {
             process: {
-              pig: o.pig.substring(32),
-              newOwner: o.newOwner.substring(35),
+              class: o.$class,
+              pig: o.pig,
+              newOwner: o.newOwner,
               purchaseDate: o.purchaseDate,
               grade: o.grade,
               purchaseName: o.purchaseName,
@@ -30,10 +35,11 @@ angular.module('bc-vda')
           };
 
           transactionData.push({
-              pig: o.pig.substring(32),
+              pig: o.pig,
               timestamp: o.timestamp,
               transactionId: o.transactionId,
-              newOwner: o.purchaseName
+              newOwner: o.purchaseName,
+              class: o.$class
             });
           
 

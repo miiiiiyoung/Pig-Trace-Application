@@ -32,8 +32,8 @@
             </div>
           </div>
 
-          <div class="card-block" ng-repeat="order in orders | orderBy: 'process.timestamp'">
-            <div ng-if="order.process.pig == pig.pig.pigId">
+          <div class="card-block" ng-repeat="order in orders | orderBy: 'process.timestamp' | filter: { process: { class: 'org.acme.mynetwork.Process' || 'org.acme.mynetwork.ProcessEvent' } }">
+             <div ng-if="order.process.pig == pig.pig.pigId"> 
               <hr />
               <p class="status status-green">
               <h3 class="card-title"><strong>&nbsp;&nbsp;&nbsp;&nbsp;{{order.process.newOwner}}</strong></h3>
@@ -44,7 +44,7 @@
               <p style="margin: 0 0 5px;"><strong>{{order.process.gradeName}}&nbsp;</strong> {{order.process.grade}}</p>
               <p style="margin: 0 0 5px;" ng-if="order.process.passFlag"><strong>도축 검사&nbsp;</strong> {{order.process.passFlag}}</p>
               <p style="margin: 0 0 5px;" ng-if="order.process.weight"><strong>중량&nbsp;</strong> {{order.process.weight}} kg</p>
-            </div>
+             </div> 
           </div>
           
         </div>

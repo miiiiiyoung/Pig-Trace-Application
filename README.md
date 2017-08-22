@@ -8,9 +8,9 @@ pig-trace-application은 돼지의 출생지부터 돼지고기로 판매되기�
 
 # 실행하기
 
-##개발 환경설정
+## 개발 환경설정
 
-###fabric-tools 다운로드
+### fabric-tools 다운로드
 
 ```linux-config
 cd /opt/gopath/src/github.com/hyperledger
@@ -25,7 +25,7 @@ export FABRIC_VERSION=hlfv1
 ```
 
 
-###Hyperledger Composer 다운로드
+### Hyperledger Composer 다운로드
 
 ```linux-config
 cd /opt/gopath/src/github.com/hyperledger
@@ -34,7 +34,7 @@ curl -O https://raw.githubusercontent.com/hyperledger/composer-sample-applicatio
 chmod u+x prereqs-ubuntu.sh
 ```
 
-###Hyperledger Composer 개발 도구 설치
+### Hyperledger Composer 개발 도구 설치
 
 ```linux-config
 sudo npm install -g composer-cli

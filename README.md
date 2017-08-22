@@ -2,7 +2,42 @@
 
 pig-trace-application은 돼지의 출생지부터 돼지고기로 판매되기까지의 과정을 이력으로 보여주고 실시간으로 이력을 추적할 수 있는 프로그램입니다.
 
+1. pig-enrollment(돼지 등록) : 돼지 고기의 출생부터 도축, 포장, 판매까지의 각 단계를 처리하고 조회하는 프로그램입니다.
+2. pig-record-monitoring(돼지 이력 모니터링) : Pig Process 프로그램은 각 돼지에 따른 트랜잭션 결과를 출력하는 프로그램입니다.
+3. pig-blockchain-monitoring(돼지 블록체인 모니터링) : 트랜잭션의 결과를 체인 형식으로 연결시켜 출력하고, 각각의 데이터를 확인할 수 있는 프로그램입니다.
+
 # 실행하기
+
+##개발 환경설정
+###fabric-tools 다운로드
+```linux-config
+cd /opt/gopath/src/github.com/hyperledger
+mkdir fabric-tools && cd fabric-tools
+curl -O https://raw.githubusercontent.com/hyperledger/composer-tools/master/packages/fabric-dev-servers/fabric-dev-servers.tar.gz
+tar -zxvf fabric-dev-servers.tar.gz
+sudo rm -rf fabric-dev-servers.tar.gz
+export FABRIC_VERSION=hlfv1
+./downloadFabric.sh
+./startFabric.sh
+./createComposerProfile.sh
+```
+
+
+###Hyperledger Composer 다운로드
+```linux-config
+cd /opt/gopath/src/github.com/hyperledger
+mkdir hyperledgercomposer && cd hyperledgercomposer
+curl -O https://raw.githubusercontent.com/hyperledger/composer-sample-applications/master/packages/getting-started/scripts/prereqs-ubuntu.sh
+chmod u+x prereqs-ubuntu.sh
+```
+
+###Hyperledger Composer 개발 도구 설치
+```linux-config
+sudo npm install -g composer-cli
+sudo npm install -g generator-hyperledger-composer
+sudo npm install -g composer-rest-server
+```
+
 
 ## REST API SERVER 실행
 
@@ -66,16 +101,19 @@ REST API SERVER가 실행되면 브라우저의 `http://localhost:3000/explorer`
 
 ### Node-RED 설치
 
-다음 명령을 통해 Node-RED를 설치합니다.
+다음 명령을 통해 `Node-RED`를 설치합니다.
 
-`sudo npm install -g --unsafe-perm node-red`
-`sudo npm install -g node-red-contrib-composer@latest`
+```linux-config
+sudo npm install -g --unsafe-perm node-red
+sudo npm install -g node-red-contrib-composer@latest
+```
 
 ### Node-RED 실행
 
 Node-RED의 설치가 완료되면 다음 명령을 통해 Node-RED를 실행합니다.
-
-`sudo node-red`
+```linux-config
+sudo node-red
+```
 
 웹 브라우저의 `http://127.0.0.1:1880/`에 접속하면 다음과 같이 Node-RED가 실행됩니다.
 

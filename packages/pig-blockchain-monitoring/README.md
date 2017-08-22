@@ -9,6 +9,8 @@ Pig Trade Applicaion 프로그램은 트랜잭션의 결과를 체인 형식으�
 NodeJS를 설치한 다음 npm을 사용하여 bower를 설치합니다.
 
 ```linux-config
+cd /opt/gopath/src/github.com/hyperledger/Pig-Trace-Application/packages/pig-blockchain-monitoring
+npm install
 npm install -g bower
 ```
 
@@ -17,7 +19,6 @@ npm install -g bower
 git cloned 명령 행이나 터미널의 관련 디렉토리로 이동한 다음 명령을 실행하십시오.
 
 ```linux-config
-npm install
 bower install
 ```
 

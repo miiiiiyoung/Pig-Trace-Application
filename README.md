@@ -9,7 +9,9 @@ pig-trace-application은 돼지의 출생지부터 돼지고기로 판매되기�
 # 실행하기
 
 ##개발 환경설정
+
 ###fabric-tools 다운로드
+
 ```linux-config
 cd /opt/gopath/src/github.com/hyperledger
 mkdir fabric-tools && cd fabric-tools
@@ -24,6 +26,7 @@ export FABRIC_VERSION=hlfv1
 
 
 ###Hyperledger Composer 다운로드
+
 ```linux-config
 cd /opt/gopath/src/github.com/hyperledger
 mkdir hyperledgercomposer && cd hyperledgercomposer
@@ -32,6 +35,7 @@ chmod u+x prereqs-ubuntu.sh
 ```
 
 ###Hyperledger Composer 개발 도구 설치
+
 ```linux-config
 sudo npm install -g composer-cli
 sudo npm install -g generator-hyperledger-composer
@@ -52,7 +56,7 @@ docker kill $(docker ps -q)
 docker rm $(docker ps -aq) -f
 
 # 패브릭 실행
-cd /opt/gopath/src/github.com/hyperledger/fabric-sample && ./startFabric.sh
+cd /opt/gopath/src/github.com/hyperledger/fabric-tools && ./startFabric.sh
 
 # 실행중인 하이퍼레저 패브릭에 bna 파일 배포
 cd /opt/gopath/src/github.com/hyperledger/Pig-Trace-Application/packages/pig-lifecycle/installers/hlfv1 && sudo composer network deploy -a org-acme-biznet.bna -p hlfv1 -i PeerAdmin -s randomString

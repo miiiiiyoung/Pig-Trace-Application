@@ -107,11 +107,11 @@ export class SearchPage {
     this.ready = this.getData("Pig/" + this.myPigId)
       .then((config) => {
         this.config = config;
+        console.log('Config loaded:',this.config);
         this.pigId = config.pigId;
         console.log('pigId:',this.pigId);
         this.pigKind = config.kind;
         console.log('pigKind:',this.pigKind);
-        console.log('Config loaded:',this.config);
         this.pigOwnerId = config.owner.substring(35);
         console.log('pigOwnerId:',this.pigOwnerId);
         this.pigBirthDate = config.birthDate;

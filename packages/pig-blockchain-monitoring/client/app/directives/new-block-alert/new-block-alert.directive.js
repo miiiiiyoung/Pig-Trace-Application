@@ -37,7 +37,7 @@ angular.module('bc-vda')
             return '<img class="bc-vda-new-block" src="assets/images/new_block.svg"/>'+
                  '<p class="bc-vda-new-block-title">NEW TRANSACTION</p>'+
                  '<p class="bc-vda-new-block-id">#'+d.id+'</p>'+
-                 '<p class="bc-vda-new-block-new-vehicle-order">'+d.newOwner+'</p>'
+                 '<p class="bc-vda-new-block-new-vehicle-order">'+(d.newOwner ? d.newOwner : d.class_id)+'</p>'
           })
           .style('opacity', 0);
 

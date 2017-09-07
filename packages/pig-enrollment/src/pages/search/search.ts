@@ -34,7 +34,7 @@ export class SearchPage {
   // private currentId;
 	private errorMessage;
 
-  baseUrl = "http://localhost:3000/api/";
+  baseUrl = "http://172.16.25.78:3000/api/";
 
   constructor(private navController: NavController, private navParams: NavParams, private http: Http) {
 

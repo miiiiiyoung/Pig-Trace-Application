@@ -68,7 +68,7 @@ cd /opt/gopath/src/github.com/hyperledger/Pig-Trace-Application/packages/pig-lif
 
 ## 샘플 Member 추가
 
-REST API SERVER가 실행되면 브라우저의 `http://localhost:3000/explorer` 페이지로 접속해 다음과 같은 Member를 추가해줍니다. (POST /Member 요청 실행)
+REST API SERVER가 실행되면 브라우저의 `http://172.16.25.78:3000/explorer` 페이지로 접속해 다음과 같은 Member를 추가해줍니다. (POST /Member 요청 실행)
 
 ```json
 [
@@ -119,7 +119,7 @@ Node-RED의 설치가 완료되면 다음 명령을 통해 Node-RED를 실행합
 sudo node-red
 ```
 
-웹 브라우저의 `http://127.0.0.1:1880/`에 접속하면 다음과 같이 Node-RED가 실행됩니다.
+웹 브라우저의 `http://172.16.25.78:1880/`에 접속하면 다음과 같이 Node-RED가 실행됩니다.
 
 ### Node-RED Import Nodes
 

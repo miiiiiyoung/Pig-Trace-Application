@@ -28,7 +28,7 @@ export class ButcheryPage {
   pigOwnerId: any;   // 돼지 소유주(Farmer)의 Id
   pigOwnerName: any;   // 돼지 소유주(Farmer)의 Name
   pigBirthDate: any;    // 돼지 출생 일자
-  baseUrl = "http://localhost:3000/api/";
+  baseUrl = "http://172.16.25.78:3000/api/";
 
   constructor(private navController: NavController, private navParams: NavParams, private http: Http) {
 

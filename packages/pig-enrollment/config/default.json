@@ -1,4 +1,4 @@
 {
-  "nodeRedBaseURL":"ws://localhost:1880",
-  "composerRestServerBaseURL":"http://localhost:3000/api/"
+  "nodeRedBaseURL":"ws://172.16.25.78:1880",
+  "composerRestServerBaseURL":"http://172.16.25.78:3000/api/"
 }

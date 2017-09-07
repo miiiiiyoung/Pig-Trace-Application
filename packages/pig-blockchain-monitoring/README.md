@@ -2,6 +2,8 @@
 
 Pig Trade Applicaion 프로그램은 트랜잭션의 결과를 체인 형식으로 연결시켜 출력하고, 각각의 데이터를 확인할 수 있는 프로그램입니다.
 
+웹 브라우저의 `http://172.16.25.78:6100/`에 접속하면 화면이 출력됩니다.
+
 프로그램 실행을 위해 REST API SERVER와 Node-RED가 실행되어있어야 합니다.(pig-lifecycle 프로그램의 README.md 파일 참고)
 
 ## 앱 의존성(App Dependencies)

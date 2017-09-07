@@ -55,5 +55,5 @@ wss.on('connection', function (ws) {
 server.listen(8200, function () {
   'use strict';
   // print a message when the server starts listening
-  console.log('server starting on http://localhost:8200');
+  console.log('server starting on http://172.16.25.78:8200');
 });

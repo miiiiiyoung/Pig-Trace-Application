@@ -9,6 +9,8 @@
 Ionic 프레임워크를 사용해 만들어졌습니다.
 프로그램 실행을 위해 REST API SERVER와 Node-RED가 실행되어있어야 합니다.(vehicle-lifecycle 프로그램의 README.md 파일 참고)
 
+웹 브라우저의 `http://172.16.25.78:8200/`에 접속하면 화면이 출력됩니다.
+
 ## 앱 의존성(App Dependencies)
 
 Ionic과 Cordova 설치:

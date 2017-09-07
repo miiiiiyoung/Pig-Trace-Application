@@ -1,6 +1,7 @@
 # Blockchain - 돼지 이력 모니터링(Pig record monitoring)
 
 Pig Process 프로그램은 각 돼지에 따른 트랜잭션 결과를 출력하는 프로그램입니다.
+웹 브라우저의 `http://172.16.25.78:6200/`에 접속하면 화면이 출력됩니다.
 
 프로그램 실행을 위해 REST API SERVER와 Node-RED가 실행되어있어야 합니다.(vehicle-lifecycle 프로그램의 README.md 파일 참고)
 

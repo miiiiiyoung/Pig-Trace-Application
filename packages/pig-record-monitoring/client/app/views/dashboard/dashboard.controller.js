@@ -13,15 +13,13 @@ angular.module('bc-manufacturer')
       if (Array.isArray(response.data)) {
         $scope.pigs = response.data.map(function(p) {
           var pig = {
-            pig: {
-              pigId: p.pigId,
-              birthDate: p.birthDate,
-              kind: p.kind,
-              color: p.color,
-              sex: p.sex,
-              importType: p.importType,
-              owner: p.owner
-            }
+            pigId: p.pigId,
+            birthDate: p.birthDate,
+            kind: p.kind,
+            color: p.color,
+            sex: p.sex,
+            importType: p.importType,
+            owner: p.owner
           };
 
           return pig;
@@ -60,21 +58,18 @@ angular.module('bc-manufacturer')
             gradeName = "판매 단위";
           }
           var order = {
-            process: {
-              class: o.$class,
-              pig: o.pig,
-              newOwner: o.newOwner,
-              purchaseDate: o.purchaseDate,
-              grade: o.grade,
-              purchaseName: o.purchaseName,
-              passFlag: o.passFlag,
-              weight: o.weight,
-              timestamp: o.timestamp,
-              ownerName: ownerName,
-              gradeName: gradeName
-            }
+            class: o.$class,
+            pig: o.pig,
+            newOwner: o.newOwner,
+            purchaseDate: o.purchaseDate,
+            grade: o.grade,
+            purchaseName: o.purchaseName,
+            passFlag: o.passFlag,
+            weight: o.weight,
+            timestamp: o.timestamp,
+            ownerName: ownerName,
+            gradeName: gradeName
           };
-          
 
           return order;
         });
@@ -124,13 +119,13 @@ angular.module('bc-manufacturer')
         return;
       }
       var status = JSON.parse(event.data);
-      console.log('processPig Event!!!');
+      console.log('processPig Event!!!',event.data);
 
       var ownerName;
       var gradeName;
-      if(status.pig){
-        status.pig = status.pig.substring(32);
-      }
+      // if(status.pig){
+      //   status.pig = status.pig.substring(32);
+      // }
       if(status.newOwner == 'BUTCHERY') {
         ownerName = "도축";
         gradeName = "도축 등급";
@@ -143,19 +138,18 @@ angular.module('bc-manufacturer')
       }
 
       $scope.orders.push({
-        process: {
-          class: status.class,
-          pig: status.pig,
-          newOwner: status.newOwner,
-          purchaseDate: status.purchaseDate,
-          grade: status.grade,
-          purchaseName: status.purchaseName,
-          passFlag: status.passFlag,
-          weight: status.weight,
-          timestamp: status.timestamp,
-          ownerName: ownerName,
-          gradeName: gradeName
-        }
+        class: status.class,
+        // class: 'org.acme.mynetwork.Process',
+        pig: status.pig,
+        newOwner: status.newOwner,
+        purchaseDate: status.purchaseDate,
+        grade: status.grade,
+        purchaseName: status.purchaseName,
+        passFlag: status.passFlag,
+        weight: status.weight,
+        timestamp: status.timestamp,
+        ownerName: ownerName,
+        gradeName: gradeName
       });
 
       $scope.$apply();

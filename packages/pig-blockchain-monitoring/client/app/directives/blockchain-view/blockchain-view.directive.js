@@ -76,7 +76,7 @@ angular.module('bc-vda')
         newBlocks.append('div')
           .attr('class', 'bc-view-block-type')
           .html(function (d) {
-            return '<label class="transactionDetails">' + d.newOwner + '</label></br><span class="transactionDetails">' + (d.purchaseName ? d.purchaseName : '') + '</span>';
+            return '<label class="transactionDetails">' + (d.newOwner ? d.newOwner : d.class_id) + '</label></br><span class="transactionDetails">' + (d.purchaseName ? d.purchaseName : '') + '</span>';
           })
           .style('opacity', 0);
 

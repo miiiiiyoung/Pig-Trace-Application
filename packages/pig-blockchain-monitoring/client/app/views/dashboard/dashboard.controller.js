@@ -37,11 +37,15 @@ angular.module('bc-vda')
           transaction_class: transaction.$class
         });
 
+        var classIdSplit = transaction.$class.split('.');
+        var classId = classIdSplit[classIdSplit.length - 1];
+
         return {
           transID: transaction.transactionId,
           newOwner: newOwner,
           purchaseName: transaction.purchaseName,
-          time: time
+          time: time,
+          class_id: classId
         };
       });
 
@@ -100,6 +104,9 @@ angular.module('bc-vda')
       id = $scope.chain[$scope.chain.length - 1].id + 1;
     }
 
+    // var classIdSplit = transaction_class.split('.');
+    // var classId = classIdSplit[classIdSplit.length - 1];
+
     // 체인 데이터 추가(new-block-alert)
     $scope.chain.push({
       id: id,
@@ -107,6 +114,7 @@ angular.module('bc-vda')
       newOwner: newOwner,
       purchaseName: purchaseName,
       transaction_class: transaction_class
+      // ,class_id: classId
     });
 
     // 트랜잭션 데이터 추가(recent-transaction-table)

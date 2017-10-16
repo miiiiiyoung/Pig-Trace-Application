@@ -771,7 +771,7 @@
         "type": "function",
         "z": "cffe8c3.a09aa7",
         "name": "REST API URL Configuration",
-        "func": "let something;\nif(msg.payload.trim()){\n    context.global.endpoint = msg.payload.trim();\n}\nelse{\n    context.global.endpoint = \"http://172.16.25.78:3000/api\";\n}\nconsole.log('What is context.global.endpoint?',context.global.endpoint);",
+        "func": "let something;\nif(msg.payload.trim()){\n    context.global.endpoint = msg.payload.trim();\n}\nelse{\n    context.global.endpoint = \"http://localhost:3000/api\";\n}\nconsole.log('What is context.global.endpoint?',context.global.endpoint);",
         "outputs": 1,
         "noerr": 0,
         "x": 776.5,

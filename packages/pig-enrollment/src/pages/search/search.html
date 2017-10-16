@@ -28,17 +28,17 @@
 
   <ion-card class="margin-card" *ngFor="let asset of allAssets">
     <h2 class="car-option">
-      <img [hidden]="pigId" src="assets/circle_empty.svg">
-      <img [hidden]="!pigId" src="assets/circle_tick.svg">
+      <img [hidden]="asset.eventsEmitted[0].pig.pigId" src="assets/circle_empty.svg">
+      <img [hidden]="!asset.eventsEmitted[0].pig.pigId" src="assets/circle_tick.svg">
       <strong>{{asset.ownerName}} 정보</strong>
     </h2>
 
     <div>
-      <h3 class="detail" [hidden]="!asset.purchaseName"><strong>{{asset.ownerName}}장 : </strong>{{asset.purchaseName}}</h3>
-      <h3 class="detail" [hidden]="!asset.purchaseDate"><strong>{{asset.ownerName}}일자 : </strong>{{asset.purchaseDate}}</h3>
-      <h3 class="detail" [hidden]="!asset.grade"><strong>{{asset.gradeName}} : </strong>{{asset.grade}}</h3>
-      <h3 class="detail" [hidden]="!asset.weight"><strong>중량 : </strong>{{asset.weight}} kg</h3>
-      <h3 class="detail" [hidden]="!asset.passFlag"><strong>합격여부 : </strong>{{asset.passFlag}}</h3> 
+      <h3 class="detail" [hidden]="!asset.eventsEmitted[0].purchaseName"><strong>{{asset.ownerName}}장 : </strong>{{asset.eventsEmitted[0].purchaseName}}</h3>
+      <h3 class="detail" [hidden]="!asset.eventsEmitted[0].purchaseDate"><strong>{{asset.ownerName}}일자 : </strong>{{asset.eventsEmitted[0].purchaseDate}}</h3>
+      <h3 class="detail" [hidden]="!asset.eventsEmitted[0].grade"><strong>{{asset.gradeName}} : </strong>{{asset.eventsEmitted[0].grade}}</h3>
+      <h3 class="detail" [hidden]="!asset.eventsEmitted[0].weight"><strong>중량 : </strong>{{asset.eventsEmitted[0].weight}} kg</h3>
+      <h3 class="detail" [hidden]="!asset.eventsEmitted[0].passFlag"><strong>합격여부 : </strong>{{asset.eventsEmitted[0].passFlag}}</h3> 
     </div>
   </ion-card>
 

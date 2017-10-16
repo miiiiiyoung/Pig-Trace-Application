@@ -13,19 +13,15 @@ angular.module('bc-vda')
 
       // 체인 데이터 추가
       $scope.chain = response.data.map(function(transaction) {
-        var newOwnerSplit, newOwner, pigIdSplit, pigId;
+        var newOwner, pigId, purchaseName;
         
-        if(transaction.pig){
-          newOwnerSplit = transaction.newOwner.split('#');
-          newOwner = newOwnerSplit[newOwnerSplit.length - 1];
-          pigIdSplit = transaction.pig.split('#');
-          pigId = pigIdSplit[pigIdSplit.length - 1];
+        if(transaction.eventsEmitted[0]){
+          newOwner = transaction.eventsEmitted[0].newOwner.memberId;
+          pigId = transaction.eventsEmitted[0].pig.pigId;
+          purchaseName = transaction.eventsEmitted[0].purchaseName;
         }
-
-        // var newOwner = transaction.newOwner;
-        // var pigId = transaction.pig;
         
-        var time = Date.parse(transaction.timestamp);
+        var time = Date.parse(transaction.transactionTimestamp);
 
         // 트랜잭션 데이터 추가(recent-transaction-table)
         $scope.transactions.push({
@@ -33,21 +29,22 @@ angular.module('bc-vda')
           transaction_id: transaction.transactionId,
           transaction_newOwner: newOwner,
           transaction_pig: pigId,
-          transaction_purchaseName: transaction.purchaseName,
-          transaction_class: transaction.$class
+          transaction_purchaseName: purchaseName,
+          transaction_class: transaction.transactionType
         });
 
-        var classIdSplit = transaction.$class.split('.');
+        var classIdSplit = transaction.transactionType.split('.');
         var classId = classIdSplit[classIdSplit.length - 1];
 
         return {
           transID: transaction.transactionId,
           newOwner: newOwner,
-          purchaseName: transaction.purchaseName,
+          purchaseName: purchaseName,
           time: time,
           class_id: classId
         };
       });
+      console.log($scope.chain);
 
       $scope.chain.sort(function(t1, t2) {
         return t1.time - t2.time;
@@ -126,6 +123,7 @@ angular.module('bc-vda')
       transaction_purchaseName: purchaseName,
       transaction_class: transaction_class
     });
+    console.log("transaction_class : " + transaction_class);
   };
 
   $scope.$on('$destroy', function () {

@@ -39,26 +39,31 @@ angular.module('bc-manufacturer')
       console.log(response.data);
       if (Array.isArray(response.data)) {
         $scope.orders = response.data.map(function(o) {
-          var ownerName;
-          var gradeName;
-          if(o.pig){
-            o.newOwner = o.newOwner.substring(35);
-            o.pig = o.pig.substring(32);
+          var ownerName, gradeName;
+          var newOwner, pig, purchaseDate, grade, purchaseName, passFlag, weight;
+
+          //transactionType아 "org.acme.mynetwork.Process"일 경우에만 데이터 세팅
+          if(o.eventsEmitted.length > 0){
+            pig = o.eventsEmitted[0].pig.pigId;
+            newOwner = o.eventsEmitted[0].newOwner.memberId;
+            purchaseDate = o.eventsEmitted[0].purchaseDate;
+            grade = o.eventsEmitted[0].grade;
+            purchaseName = o.eventsEmitted[0].purchaseName;
+            passFlag = o.eventsEmitted[0].passFlag;
+            weight = o.eventsEmitted[0].weight;
           }
-          // o.newOwner = o.newOwner.substring(35);
-          // o.pig = o.pig.substring(32);
-          if(o.newOwner == 'BUTCHERY') {
+          if(newOwner == 'BUTCHERY') {
             ownerName = "도축";
             gradeName = "도축 등급";
-          }else if(o.newOwner == 'PACKAGE'){
+          }else if(newOwner == 'PACKAGE'){
             ownerName = "포장";
             gradeName = "포장 단위";
-          }else if(o.newOwner == 'RETAILER'){
+          }else if(newOwner == 'RETAILER'){
             ownerName = "판매";
             gradeName = "판매 단위";
           }
           var order = {
-            class: o.$class,
+            /*class: o.$class,
             pig: o.pig,
             newOwner: o.newOwner,
             purchaseDate: o.purchaseDate,
@@ -67,6 +72,17 @@ angular.module('bc-manufacturer')
             passFlag: o.passFlag,
             weight: o.weight,
             timestamp: o.timestamp,
+            ownerName: ownerName,
+            gradeName: gradeName*/
+            transactionType: o.transactionType,
+            pig: pig,
+            newOwner: newOwner,
+            purchaseDate: purchaseDate,
+            grade: grade,
+            purchaseName: purchaseName,
+            passFlag: passFlag,
+            weight: weight,
+            timestamp: o.transactionTimestamp,
             ownerName: ownerName,
             gradeName: gradeName
           };
@@ -119,13 +135,14 @@ angular.module('bc-manufacturer')
         return;
       }
       var status = JSON.parse(event.data);
-      console.log('processPig Event!!!',event.data);
+      console.log('processPig Event!!!', event.data);
 
       var ownerName;
       var gradeName;
       // if(status.pig){
       //   status.pig = status.pig.substring(32);
       // }
+
       if(status.newOwner == 'BUTCHERY') {
         ownerName = "도축";
         gradeName = "도축 등급";

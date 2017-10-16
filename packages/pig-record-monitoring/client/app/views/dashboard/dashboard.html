@@ -32,7 +32,7 @@
             </div>
           </div>
 
-          <!-- <div class="card-block" ng-repeat="order in orders | orderBy: 'timestamp' | filter: { process: { class: 'org.acme.mynetwork.Process' } }"> -->
+          <!-- <div class="card-block" ng-repeat="order in orders | orderBy: 'timestamp' | filter: { class: 'org.hyperledger.composer.system.HistorianRecord' }"> -->
             <div class="card-block" ng-repeat="order in orders | orderBy: 'timestamp' ">
               <div ng-if="order.pig == pig.pigId"> 
               <hr />

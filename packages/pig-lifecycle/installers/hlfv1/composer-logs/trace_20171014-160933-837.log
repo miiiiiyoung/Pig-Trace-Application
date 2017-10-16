@@ -1,0 +1,2 @@
+2017-10-13T07:09:45.183Z ERROR   HLFConnectionManager    :fabric-client()          [client-utils.js]: sendPeersProposal - Promise is rejected: Error: chaincode error (status: 500, message: Error installing chaincode code org-acme-biznet:0.13.0(chaincode /var/hyperledger/production/chaincodes/org-acme-biznet.0.13.0 exists))
+    at /usr/lib/node_modules/composer-cli/node_modules/grpc/src/node/src/client.js:554:15 {}$

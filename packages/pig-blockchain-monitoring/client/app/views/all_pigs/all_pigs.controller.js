@@ -14,13 +14,24 @@ angular.module('bc-vda')
       console.log(response.data);
       if (Array.isArray(response.data)) {
         $scope.orders = response.data.map(function(o) {
-          if(o.pig) {
+
+          var newOwner, pig, purchaseDate, grade, purchaseName, passFlag, weight;
+          /*if(o.pig) {
             o.newOwner = o.newOwner.substring(35);
             o.pig = o.pig.substring(32);
+          }*/
+          if(o.eventsEmitted.length > 0){
+            pig = o.eventsEmitted[0].pig.pigId;
+            newOwner = o.eventsEmitted[0].newOwner.memberId;
+            purchaseDate = o.eventsEmitted[0].purchaseDate;
+            grade = o.eventsEmitted[0].grade;
+            purchaseName = o.eventsEmitted[0].purchaseName;
+            passFlag = o.eventsEmitted[0].passFlag;
+            weight = o.eventsEmitted[0].weight;
           }
           
           var order = {
-            process: {
+            /*process: {
               class: o.$class,
               pig: o.pig,
               newOwner: o.newOwner,
@@ -31,15 +42,27 @@ angular.module('bc-vda')
               weight: o.weight,
               timestamp: o.timestamp,
               transactionId: o.transactionId
-            }
+            }*/
+            transactionType: o.transactionType,
+            pig: pig,
+            newOwner: newOwner,
+            purchaseDate: purchaseDate,
+            grade: grade,
+            purchaseName: purchaseName,
+            passFlag: passFlag,
+            weight: weight,
+            timestamp: o.transactionTimestamp,
+            transactionId: o.transactionId,
+            // ownerName: ownerName,
+            // gradeName: gradeName
           };
 
           transactionData.push({
-              pig: o.pig,
-              timestamp: o.timestamp,
+              pig: pig,
+              timestamp: o.transactionTimestamp,
               transactionId: o.transactionId,
-              newOwner: o.purchaseName,
-              class: o.$class
+              newOwner: purchaseName,
+              class: o.transactionType
             });
           
 

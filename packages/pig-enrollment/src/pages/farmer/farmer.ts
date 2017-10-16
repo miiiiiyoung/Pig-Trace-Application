@@ -23,7 +23,7 @@ export class FarmerPage {
 
   memberId: any;
   memberName: any;
-  baseUrl="http://172.16.25.78:3000/api/Member/"  // get 요청을 수행하기 위한 baseUrl
+  baseUrl="http://localhost:3000/api/Member/"  // get 요청을 수행하기 위한 baseUrl
   pigId: any;
   pig: any;
   birthDate: any;

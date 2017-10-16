@@ -12,5 +12,5 @@ RUN apk add --no-cache git && \
     npm cache clean && \
     apk del git
 COPY . /usr/src/app/
-EXPOSE 6001
+EXPOSE 6200
 CMD [ "npm", "start" ]

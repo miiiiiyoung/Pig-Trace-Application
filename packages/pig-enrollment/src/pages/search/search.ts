@@ -34,7 +34,7 @@ export class SearchPage {
   // private currentId;
 	private errorMessage;
 
-  baseUrl = "http://172.16.25.78:3000/api/";
+  baseUrl = "http://localhost:3000/api/";
 
   constructor(private navController: NavController, private navParams: NavParams, private http: Http) {
 
@@ -124,23 +124,24 @@ export class SearchPage {
   // 트랜잭션 데이터 가져오기
   loadAll(): Promise<any> {
     let tempList = [];
-    return this.getData("system/transactions")
+    return this.getData("system/historian")
     .then((result) => {
 			this.errorMessage = null;
       result.forEach(asset => {
-        if(asset.pig.substring(32) == this.myPigId){
-          if(asset.newOwner.substring(35) == 'BUTCHERY'){
+        if(asset.transactionType == 'org.acme.mynetwork.Process'
+         && asset.eventsEmitted[0].pig.pigId == this.myPigId){
+          if(asset.eventsEmitted[0].newOwner.memberId == 'BUTCHERY'){
             asset.ownerName = "도축";
             asset.gradeName = "등급";
-          }else if(asset.newOwner.substring(35) == 'PACKAGE'){
+          }else if(asset.eventsEmitted[0].newOwner.memberId == 'PACKAGE'){
             asset.ownerName = "포장";
             asset.gradeName = "포장단위";
-          }else if(asset.newOwner.substring(35) == 'RETAILER'){
+          }else if(asset.eventsEmitted[0].newOwner.memberId == 'RETAILER'){
             asset.ownerName = "판매";
             asset.gradeName = "판매단위";
           }
           tempList.push(asset);
-          console.log("add.pig: " + asset.pig.substring(32));
+          console.log("add.pig: " + asset.eventsEmitted[0].pig.pigId);
         }
 
         // timestamp 필드를 기준으로 데이터 정렬
